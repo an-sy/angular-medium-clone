@@ -18,8 +18,3 @@ export const registerFailureAction = createAction(
   ActionTypes.REGISTER_FAILURE,
   props<{errors: BackendErrorsInterface}>()
   )
-
-export const stepAction = createAction(
-  ActionTypes.STEPS,
-  props<{steps: Array<string> }>()
-);

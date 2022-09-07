@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { StoreModule } from '@ngrx/store';
@@ -10,6 +10,9 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { TopBarModule } from './shared/modules/topBar/topBar.module';
+import { PersistanceService } from './shared/services/persistance.service';
+import { AuthIntercepter } from './shared/services/authintercepter.service';
 
 @NgModule({
   declarations: [
@@ -26,8 +29,15 @@ import { AuthModule } from './auth/auth.module';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     EffectsModule.forRoot([]),
+    TopBarModule,
   ],
-  providers: [],
+  providers: [PersistanceService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthIntercepter,
+    multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule  { }
