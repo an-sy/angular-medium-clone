@@ -2,6 +2,7 @@
 ## Course of Monsterlessons Academy
 https://monsterlessons-academy.com/courses/angular-and-ngrx-building-real-project-from-scratch
 
+
 ## MediumClone
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
